@@ -17,6 +17,7 @@
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/composition-api": "^0.12.5",
     "@nuxtjs/pwa": "^3.0.2",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.5",
@@ -29,6 +30,7 @@
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-config-typescript": "^3.0.0",
     "@nuxtjs/eslint-module": "^2.0.0",
+    "@types/nuxtjs__auth": "^4.8.5",
     "@vue/test-utils": "^1.1.0",
     "ava": "^3.12.1",
     "babel-eslint": "^10.1.0",
@@ -38,8 +40,10 @@
     "eslint-plugin-nuxt": "^1.0.0",
     "jsdom": "^16.4.0",
     "jsdom-global": "^3.0.2",
+    "node-sass": "^4.14.1",
     "require-extension-hooks": "^0.3.3",
     "require-extension-hooks-babel": "^1.0.0",
-    "require-extension-hooks-vue": "^3.0.0"
+    "require-extension-hooks-vue": "^3.0.0",
+    "sass-loader": "^10.0.2"
   }
 }

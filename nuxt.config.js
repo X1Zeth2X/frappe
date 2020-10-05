@@ -26,7 +26,8 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build'
+    '@nuxt/typescript-build',
+    '@nuxtjs/composition-api'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -48,8 +49,9 @@ export default {
     strategies: {
       local: {
         endpoints: {
-        login: { url: 'https://zeth-juno.herokuapp.com/auth/login', method: 'post' }
-        }
+          login: { url: 'https://zeth-juno.herokuapp.com/auth/login', method: 'post' }
+        },
+        autoFetchUser: false
       }
     }
   },
