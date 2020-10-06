@@ -1,53 +1,94 @@
 <template>
-  <section class="section">
-    <div class="columns is-mobile">
-      <card
-        title="Free"
-        icon="github"
-      >
-        Open source on <a href="https://github.com/buefy/buefy">
-          GitHub
-        </a>
-      </card>
+  <div id="index">
+    <section class="hero">
+      <div v-if="posts.length > 0" class="hero-body">
+        <div class="container">
+          <div class="subtitle oswald header">
+            Latest Posts
 
-      <card
-        title="Responsive"
-        icon="cellphone-link"
-      >
-        <b class="has-text-grey">
-          Every
-        </b> component is responsive
-      </card>
+            <a class="header-right">
+              View All
+              <b-icon icon="view-list" />
+            </a>
+          </div>
+          <hr>
 
-      <card
-        title="Modern"
-        icon="alert-decagram"
-      >
-        Built with <a href="https://vuejs.org/">
-          Vue.js
-        </a> and <a href="http://bulma.io/">
-          Bulma
-        </a>
-      </card>
+          <div class="columns">
+            <div
+              v-for="post in posts.slice(0, 3)"
+              :key="post.id"
 
-      <card
-        title="Lightweight"
-        icon="arrange-bring-to-front"
-      >
-        No other internal dependency
-      </card>
-    </div>
-  </section>
+              class="column"
+            >
+              <Post
+                :id="post.id"
+                :title="post.title"
+                :image="post.imageUrl"
+                :date="post.createdAt"
+                :name="user.fullName"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
-<script>
-import Card from '~/components/Card'
+<script lang="ts">
+import { defineComponent, onMounted, ref, useContext } from '@nuxtjs/composition-api'
 
-export default {
-  name: 'HomePage',
+import Post from '~/components/Index/Post.vue'
 
+export default defineComponent({
+  name: 'index',
   components: {
-    Card
+    Post
+  },
+
+  setup () {
+    const { $axios } = useContext()
+
+    const user = ref({
+      bio: String,
+      email: String,
+      fullName: String,
+      joinedAt: String,
+      posts: []
+    })
+
+    const posts = ref([])
+
+    onMounted(async () => {
+      const resp = await $axios.$get('https://zeth-juno.herokuapp.com/user/zeth.leonardo@protonmail.com?includePosts=true')
+      user.value = resp.user
+      posts.value = resp.user.posts.reverse()
+    })
+
+    return {
+      user,
+      posts
+    }
+  },
+
+  head () {
+    return {
+      title: 'Home ✨'
+    }
+  }
+})
+</script>
+
+<style lang="scss" scoped>
+#index {
+  .br {
+    border-radius: 1em;
+  }
+
+  .header {
+    &-right {
+      float: right;
+    }
   }
 }
-</script>
+</style>
