@@ -18,6 +18,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    { src: '~/plugins/MarkdownItVue.ts', mode: 'client' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -49,7 +50,7 @@ export default {
     strategies: {
       local: {
         endpoints: {
-          login: { url: 'https://zeth-juno.herokuapp.com/auth/login', method: 'post' }
+          login: { url: 'https://zeth-juno.herokuapp.com/auth/login', method: 'post', propertyName: 'jwt.token' }
         },
         autoFetchUser: false
       }
