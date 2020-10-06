@@ -29,6 +29,7 @@
             >
               <b-input
                 v-model="state.password"
+                password-reveal
                 type="password"
               />
             </b-field>
@@ -52,11 +53,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from '@nuxtjs/composition-api'
+import { defineComponent, reactive, ref, useContext } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   name: 'login',
   layout: 'empty',
+  middleware: 'auth',
   auth: 'guest',
 
   setup () {
@@ -65,25 +67,23 @@ export default defineComponent({
       password: ''
     })
 
+    const { $auth } = useContext()
+
     const errorMsg = ref('')
 
     function authenticate () {
-      // @ts-ignore
-      this.$auth.loginWith('local', {
-        data: {
-          email: state.email,
-          password: state.password
-        }
-      }).then((res: any) => {
-        const resData = res.data
+      const data = {
+        email: state.email,
+        password: state.password
+      }
 
-        // @ts-ignore
-        this.$auth.setUser(resData.user)
-        // @ts-ignore
-        this.$auth.setUserToken(resData.jwt.token)
-      }).catch((err: any) => {
-        errorMsg.value = err.response.data.message
-      })
+      $auth.loginWith('local', { data })
+        .then((res: any) => {
+          $auth.setUser(res.data.user)
+          // $auth.setToken('local', res.data.jwt.token)
+        }).catch((err) => {
+          errorMsg.value = err.response.data.message
+        })
     }
 
     return {
