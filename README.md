@@ -1,4 +1,4 @@
-# frappe
+# Frappé
 
 Blog app frontend for school. :)
 
