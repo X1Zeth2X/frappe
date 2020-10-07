@@ -106,6 +106,8 @@ export default defineComponent({
 
       padding-left: 2em;
       padding-right: 2em;
+      padding-top: 2em;
+      padding-bottom: 1em;
     }
 
     &-negmt {
