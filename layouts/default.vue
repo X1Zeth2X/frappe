@@ -34,8 +34,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Teko:wght@600&Lato&family=Oswald:wght@500&display=swap');
-
 #default {
   .teko {
     font-family: 'Teko', sans-serif;
