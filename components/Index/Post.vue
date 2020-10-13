@@ -63,7 +63,8 @@ export default defineComponent({
   .post-img {
     border-radius: 2em;
     object-fit: cover;
-    height: 25em;
+    overflow: hidden;
+    height: 100%;
   }
 }
 </style>

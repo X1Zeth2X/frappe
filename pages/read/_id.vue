@@ -13,7 +13,7 @@
         <div class="title oswald">
           {{ post.title }}
 
-          <b-dropdown v-if="$auth.loggedIn" aria-role="list" style="float: right">
+          <b-dropdown v-if="$auth.loggedIn" aria-role="list" class="float__right">
             <b-button slot="trigger" slot-scope="{ active }" class="is-primary">
               <b-icon :icon="active ? 'chevron-up' : 'chevron-down'" />
             </b-button>

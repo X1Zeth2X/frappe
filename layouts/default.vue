@@ -1,6 +1,6 @@
 <template>
   <div id="default">
-    <Navbar class="pad-nav" />
+    <Navbar class="pad__nav" />
 
     <section class="main-content">
       <nuxt />
@@ -46,14 +46,19 @@ export default defineComponent({
   font-family: 'Lato', sans-serif;
 
   .pad {
-    &-content {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    &-nav {
+    &__nav {
       padding-left: 10px;
       padding-right: 10px;
+    }
+  }
+
+  .float {
+    &__left {
+      float: left;
+    }
+
+    &__right {
+      float: right;
     }
   }
 
