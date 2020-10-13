@@ -1,15 +1,19 @@
 <template>
   <div id="read" class="post">
-    <img :src="post.imageUrl" alt="Post Image" class="post-img">
+    <img :src="post.imageUrl" class="post-img">
+    <b-loading v-model="loading" />
 
     <div
-      :class="['card', 'post-content', post.imageUrl ? 'post-negmt' : '']"
+      :class="[
+        'card', 'post-content', 'animate__animated animate__bounceIn',
+        post.imageUrl ? 'post-negmt' : ''
+      ]"
     >
-      <div class="card-content">
+      <div v-show="!loading" class="card-content">
         <div class="title oswald">
           {{ post.title }}
 
-          <b-dropdown aria-role="list" style="float: right">
+          <b-dropdown v-if="$auth.loggedIn" aria-role="list" style="float: right">
             <b-button slot="trigger" slot-scope="{ active }" class="is-primary">
               <b-icon :icon="active ? 'chevron-up' : 'chevron-down'" />
             </b-button>
@@ -36,6 +40,16 @@
         </div>
       </div>
     </div>
+
+    <b-button
+      class="topBtn"
+      icon-right="chevron-up"
+      size="is-large"
+      type="is-dark"
+      outlined
+
+      @click="goTop"
+    />
   </div>
 </template>
 
@@ -47,8 +61,9 @@ export default defineComponent({
   name: 'read',
 
   setup (_, { root }) {
-    const route = root.$route
+    const [route, router] = [root.$route, root.$router]
     const { $axios } = useContext()
+    const loading = ref(true)
 
     const post = ref({
       id: Number,
@@ -65,22 +80,29 @@ export default defineComponent({
       const resp = await $axios.$get(`https://zeth-juno.herokuapp.com/post/${route.params.id}`)
       post.value = resp.post
       content.value = resp.post.content
+
+      setTimeout(() => {
+        loading.value = false
+      }, 250)
     })
 
-    function deletePost () {
+    const deletePost = () => {
       $axios.$delete(`https://zeth-juno.herokuapp.com/post/${route.params.id}`)
-      root.$router.replace({ name: 'index' })
+      router.replace({ name: 'index' })
     }
 
-    function prettyDate (date: string) {
-      return moment.utc(date).format('MMM do, YYYY')
-    }
+    const prettyDate = (date: string) => moment.utc(date).format('MMM do, YYYY')
+
+    const goTop = () => window.scrollTo({ top: 0 })
 
     return {
       post,
       content,
+      loading,
+
+      deletePost,
       prettyDate,
-      deletePost
+      goTop
     }
   }
 })
@@ -113,6 +135,14 @@ export default defineComponent({
     &-negmt {
       margin-top: -20em;
     }
+  }
+
+  .topBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    border-radius: 2em;
   }
 }
 </style>

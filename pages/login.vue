@@ -80,7 +80,6 @@ export default defineComponent({
       $auth.loginWith('local', { data })
         .then((res: any) => {
           $auth.setUser(res.data.user)
-          // $auth.setToken('local', res.data.jwt.token)
         }).catch((err) => {
           errorMsg.value = err.response.data.message
         })
