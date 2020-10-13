@@ -32,11 +32,18 @@
           />
         </b-field>
 
-        <b-button>
+        <b-button
+          class="float__left"
+          size="is-medium"
+          type="is-danger"
+          outlined
+          @click="$router.go(-1)"
+        >
           Cancel
         </b-button>
 
         <b-button
+          class="float__right"
           type="is-success"
           icon-right="check-outline"
           size="is-medium"
