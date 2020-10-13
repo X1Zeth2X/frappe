@@ -3,10 +3,6 @@
     <img :src="post.imageUrl" class="post-img">
     <b-loading v-model="loading" />
 
-    <transition name="animate_bounce">
-      lol
-    </transition>
-
     <div
       :class="[
         'card', 'post-content', 'animate__animated animate__bounceIn',
@@ -44,6 +40,14 @@
         </div>
       </div>
     </div>
+
+    <b-button
+      class="topBtn"
+      icon-right="chevron-up"
+      size="is-large"
+      type="is-dark"
+      @click="scrollTop"
+    />
   </div>
 </template>
 
@@ -55,7 +59,7 @@ export default defineComponent({
   name: 'read',
 
   setup (_, { root }) {
-    const route = root.$route
+    const [route, router] = [root.$route, root.$router]
     const { $axios } = useContext()
     const loading = ref(true)
 
@@ -80,21 +84,22 @@ export default defineComponent({
       }, 250)
     })
 
-    function deletePost () {
+    const deletePost = () => {
       $axios.$delete(`https://zeth-juno.herokuapp.com/post/${route.params.id}`)
-      root.$router.replace({ name: 'index' })
+      router.replace({ name: 'index' })
     }
 
-    function prettyDate (date: string) {
-      return moment.utc(date).format('MMM do, YYYY')
-    }
+    const prettyDate = (date: string) => moment.utc(date).format('MMM do, YYYY')
+
+    const scrollTop = () => window.scrollTo({ top: 0 })
 
     return {
       post,
       content,
-      prettyDate,
+
       deletePost,
-      loading
+      prettyDate,
+      scrollTop
     }
   }
 })
@@ -127,6 +132,14 @@ export default defineComponent({
     &-negmt {
       margin-top: -20em;
     }
+  }
+
+  .topBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border-radius: 2em;
   }
 }
 </style>
