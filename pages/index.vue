@@ -62,7 +62,7 @@ export default defineComponent({
     onMounted(async () => {
       const resp = await $axios.$get('https://zeth-juno.herokuapp.com/user/zeth.leonardo@protonmail.com?includePosts=true')
       user.value = resp.user
-      posts.value = resp.user.posts.reverse()
+      posts.value = resp.user.posts
     })
 
     return {
