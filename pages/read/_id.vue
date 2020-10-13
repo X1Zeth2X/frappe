@@ -46,7 +46,9 @@
       icon-right="chevron-up"
       size="is-large"
       type="is-dark"
-      @click="scrollTop"
+      outlined
+
+      @click="goTop"
     />
   </div>
 </template>
@@ -91,15 +93,16 @@ export default defineComponent({
 
     const prettyDate = (date: string) => moment.utc(date).format('MMM do, YYYY')
 
-    const scrollTop = () => window.scrollTo({ top: 0 })
+    const goTop = () => window.scrollTo({ top: 0 })
 
     return {
       post,
       content,
+      loading,
 
       deletePost,
       prettyDate,
-      scrollTop
+      goTop
     }
   }
 })
@@ -137,7 +140,7 @@ export default defineComponent({
   .topBtn {
     position: fixed;
     bottom: 20px;
-    right: 30px;
+    right: 20px;
     z-index: 99;
     border-radius: 2em;
   }
