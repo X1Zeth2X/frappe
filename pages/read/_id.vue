@@ -1,15 +1,23 @@
 <template>
   <div id="read" class="post">
-    <img :src="post.imageUrl" alt="Post Image" class="post-img">
+    <img :src="post.imageUrl" class="post-img">
+    <b-loading v-model="loading" />
+
+    <transition name="animate_bounce">
+      lol
+    </transition>
 
     <div
-      :class="['card', 'post-content', post.imageUrl ? 'post-negmt' : '']"
+      :class="[
+        'card', 'post-content', 'animate__animated animate__bounceIn',
+        post.imageUrl ? 'post-negmt' : ''
+      ]"
     >
-      <div class="card-content">
+      <div v-show="!loading" class="card-content">
         <div class="title oswald">
           {{ post.title }}
 
-          <b-dropdown aria-role="list" style="float: right">
+          <b-dropdown v-if="$auth.loggedIn" aria-role="list" style="float: right">
             <b-button slot="trigger" slot-scope="{ active }" class="is-primary">
               <b-icon :icon="active ? 'chevron-up' : 'chevron-down'" />
             </b-button>
@@ -49,6 +57,7 @@ export default defineComponent({
   setup (_, { root }) {
     const route = root.$route
     const { $axios } = useContext()
+    const loading = ref(true)
 
     const post = ref({
       id: Number,
@@ -65,6 +74,10 @@ export default defineComponent({
       const resp = await $axios.$get(`https://zeth-juno.herokuapp.com/post/${route.params.id}`)
       post.value = resp.post
       content.value = resp.post.content
+
+      setTimeout(() => {
+        loading.value = false
+      }, 250)
     })
 
     function deletePost () {
@@ -80,7 +93,8 @@ export default defineComponent({
       post,
       content,
       prettyDate,
-      deletePost
+      deletePost,
+      loading
     }
   }
 })
