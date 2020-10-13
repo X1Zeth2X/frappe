@@ -1,5 +1,5 @@
 <template>
-  <b-navbar id="navbar" shadow fixed-top>
+  <b-navbar id="navbar" shadow>
     <template slot="brand" class="brand">
       <nuxt-link :to="{ name: 'index' }" class="navbar-item">
         <p class="teko name">
