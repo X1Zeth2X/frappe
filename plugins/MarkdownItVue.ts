@@ -1,6 +1,6 @@
 import Vue from 'vue'
 // @ts-ignore
-import MarkdownItVue from 'markdown-it-vue'
+import MarkdownItVueLight from 'markdown-it-vue/dist/markdown-it-vue-light.umd.min.js'
 import 'markdown-it-vue/dist/markdown-it-vue.css'
 
-Vue.use(MarkdownItVue)
+Vue.use(MarkdownItVueLight)

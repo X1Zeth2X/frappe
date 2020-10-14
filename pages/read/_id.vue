@@ -36,7 +36,10 @@
         </div>
 
         <div>
-          <markdown-it-vue :content="content" class="md-body" />
+          <markdown-it-vue-light
+            class="md-body"
+            :content="content"
+          />
         </div>
       </div>
     </div>
@@ -130,6 +133,10 @@ export default defineComponent({
       padding-right: 2em;
       padding-top: 2em;
       padding-bottom: 1em;
+    }
+
+    &__text {
+      font-size: 16px;
     }
 
     &-negmt {
