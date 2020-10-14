@@ -1,5 +1,5 @@
 <template>
-  <b-navbar id="navbar" shadow>
+  <b-navbar id="navbar" type="is-dark">
     <template slot="brand" class="brand">
       <nuxt-link :to="{ name: 'index' }" class="navbar-item">
         <p class="teko name">
@@ -24,6 +24,7 @@
             type="is-info"
             icon-right="login"
             :to="{ name: 'login' }"
+            rounded
           >
             Login
           </b-button>
@@ -76,7 +77,7 @@ export default defineComponent({
   }
 
   .name {
-    font-size: 40px;
+    font-size: 35px;
 
     &-colored {
       color: red;

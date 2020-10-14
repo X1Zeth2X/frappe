@@ -1,5 +1,15 @@
 <template>
   <div id="index">
+    <section class="hero is-light">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="subtitle">
+            I should add stuff here and use it as a new portfolio...
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section class="hero">
       <div v-if="posts.length > 0" class="hero-body">
         <div class="container">
@@ -13,7 +23,7 @@
           </div>
           <hr>
 
-          <div class="columns">
+          <div class="columns is-variable is-7">
             <div
               v-for="post in posts.slice(0, 3)"
               :key="post.id"
