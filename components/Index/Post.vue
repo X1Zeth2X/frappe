@@ -64,7 +64,7 @@ export default defineComponent({
     border-radius: 2em;
     object-fit: cover;
     overflow: hidden;
-    height: 100%;
+    height: 26em;
   }
 }
 </style>
