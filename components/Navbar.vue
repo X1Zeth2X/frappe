@@ -24,6 +24,8 @@
             type="is-info"
             icon-right="login"
             :to="{ name: 'login' }"
+            rounded
+            outlined
           >
             Login
           </b-button>
@@ -76,7 +78,7 @@ export default defineComponent({
   }
 
   .name {
-    font-size: 40px;
+    font-size: 30px;
 
     &-colored {
       color: red;
