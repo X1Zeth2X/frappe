@@ -107,6 +107,12 @@ export default defineComponent({
       prettyDate,
       goTop
     }
+  },
+
+  head () {
+    return {
+      title: 'Read 📖'
+    }
   }
 })
 </script>
