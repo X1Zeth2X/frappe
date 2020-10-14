@@ -2,37 +2,42 @@
   <div id="index">
     <section class="hero is-light">
       <div class="hero-body">
-        <p class="subtitle">
-          I should add stuff here and use it as a new portfolio...
-        </p>
+        <div class="container has-text-centered">
+          <p class="subtitle">
+            I should add stuff here and use it as a new portfolio...
+          </p>
+        </div>
       </div>
     </section>
+
     <section class="hero">
       <div v-if="posts.length > 0" class="hero-body">
-        <div class="subtitle oswald header">
-          Latest Posts
+        <div class="container">
+          <div class="subtitle oswald header">
+            Latest Posts
 
-          <a class="header-right">
-            View All
-            <b-icon icon="view-list" />
-          </a>
-        </div>
-        <hr>
+            <a class="header-right">
+              View All
+              <b-icon icon="view-list" />
+            </a>
+          </div>
+          <hr>
 
-        <div class="columns is-variable is-7">
-          <div
-            v-for="post in posts.slice(0, 4)"
-            :key="post.id"
+          <div class="columns is-variable is-7">
+            <div
+              v-for="post in posts.slice(0, 3)"
+              :key="post.id"
 
-            class="column"
-          >
-            <Post
-              :id="post.id"
-              :title="post.title"
-              :image="post.imageUrl"
-              :date="post.createdAt"
-              :name="user.fullName"
-            />
+              class="column"
+            >
+              <Post
+                :id="post.id"
+                :title="post.title"
+                :image="post.imageUrl"
+                :date="post.createdAt"
+                :name="user.fullName"
+              />
+            </div>
           </div>
         </div>
       </div>
