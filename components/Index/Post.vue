@@ -40,9 +40,10 @@ export default defineComponent({
     name: String,
     image: String
   },
+
   setup (props) {
     const { $auth } = useContext();
-    const prettyDate = moment.utc(props.date).local().fromNow();
+    const prettyDate = moment(props.date).utc().local().fromNow();
 
     const isAuthor = () => {
       return $auth.user !== null ? (

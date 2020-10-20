@@ -14,7 +14,6 @@ import { defineComponent } from '@nuxtjs/composition-api';
 import Navbar from '~/components/Navbar.vue';
 
 export default defineComponent({
-  transition: 'animate__animated animate__slideIn',
   components: {
     Navbar
   },
@@ -44,7 +43,7 @@ export default defineComponent({
     font-family: 'Oswald', sans-serif;
   }
 
-  font-family: 'Lato', sans-serif;
+  font-family: 'Oxygen', sans-serif;
 
   .float {
     &__left {
