@@ -9,11 +9,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api';
 
-import Navbar from '~/components/Navbar.vue'
+import Navbar from '~/components/Navbar.vue';
 
 export default defineComponent({
+  transition: 'animate__animated animate__slideIn',
   components: {
     Navbar
   },
@@ -24,13 +25,13 @@ export default defineComponent({
         icon: 'home',
         to: { name: 'index' }
       }
-    ]
+    ];
 
     return {
       items
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="scss">

@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, useContext } from '@nuxtjs/composition-api'
+import { defineComponent, reactive, ref, useContext } from '@nuxtjs/composition-api';
 
 export default defineComponent({
   name: 'login',
@@ -62,42 +62,42 @@ export default defineComponent({
   auth: 'guest',
 
   setup () {
+    const { $auth } = useContext();
+
     const state = reactive({
       email: '',
       password: ''
-    })
+    });
 
-    const { $auth } = useContext()
-
-    const errorMsg = ref('')
+    const errorMsg = ref('');
 
     function authenticate () {
       const data = {
         email: state.email,
         password: state.password
-      }
+      };
 
       $auth.loginWith('local', { data })
         .then((res: any) => {
-          $auth.setUser(res.data.user)
+          $auth.setUser(res.data.user);
         }).catch((err) => {
-          errorMsg.value = err.response.data.message
-        })
+          errorMsg.value = err.response.data.message;
+        });
     }
 
     return {
       state,
       errorMsg,
       authenticate
-    }
+    };
   },
 
   head () {
     return {
       title: 'Login'
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

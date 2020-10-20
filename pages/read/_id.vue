@@ -57,16 +57,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, useContext } from '@nuxtjs/composition-api'
-import moment from 'moment'
+import { defineComponent, onMounted, ref, useContext } from '@nuxtjs/composition-api';
+import moment from 'moment';
 
 export default defineComponent({
   name: 'read',
+  transition: 'animate__animated animate__bounceIn',
 
   setup (_, { root }) {
-    const [route, router] = [root.$route, root.$router]
-    const { $axios } = useContext()
-    const loading = ref(true)
+    const [route, router] = [root.$route, root.$router];
+    const { $axios } = useContext();
+    const loading = ref(true);
 
     const post = ref({
       id: Number,
@@ -75,28 +76,28 @@ export default defineComponent({
       content: String,
       createdAt: String,
       updatedAt: String
-    })
+    });
 
-    const content = ref('')
+    const content = ref('');
 
     onMounted(async () => {
-      const resp = await $axios.$get(`https://zeth-juno.herokuapp.com/post/${route.params.id}`)
-      post.value = resp.post
-      content.value = resp.post.content
+      const resp = await $axios.$get(`https://zeth-juno.herokuapp.com/post/${route.params.id}`);
+      post.value = resp.post;
+      content.value = resp.post.content;
 
       setTimeout(() => {
-        loading.value = false
-      }, 250)
-    })
+        loading.value = false;
+      }, 250);
+    });
 
     const deletePost = () => {
-      $axios.$delete(`https://zeth-juno.herokuapp.com/post/${route.params.id}`)
-      router.replace({ name: 'index' })
-    }
+      $axios.$delete(`https://zeth-juno.herokuapp.com/post/${route.params.id}`);
+      router.replace({ name: 'index' });
+    };
 
-    const prettyDate = (date: string) => moment.utc(date).format('MMM do, YYYY')
+    const prettyDate = (date: string) => moment.utc(date).format('MMM do, YYYY');
 
-    const goTop = () => window.scrollTo({ top: 0 })
+    const goTop = () => window.scrollTo({ top: 0 });
 
     return {
       post,
@@ -106,15 +107,15 @@ export default defineComponent({
       deletePost,
       prettyDate,
       goTop
-    }
+    };
   },
 
   head () {
     return {
       title: 'Read 📖'
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

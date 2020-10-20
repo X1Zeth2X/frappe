@@ -59,18 +59,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api';
 
 export default defineComponent({
   name: 'Navbar',
   setup () {
-    const open = (link: string) => window.open(link)
+    const open = (link: string) => window.open(link);
 
     return {
       open
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

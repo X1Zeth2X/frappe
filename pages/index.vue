@@ -46,9 +46,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, useContext } from '@nuxtjs/composition-api'
+import { defineComponent, onMounted, ref, useContext } from '@nuxtjs/composition-api';
 
-import Post from '~/components/Index/Post.vue'
+import Post from '~/components/Index/Post.vue';
 
 export default defineComponent({
   name: 'index',
@@ -57,7 +57,7 @@ export default defineComponent({
   },
 
   setup () {
-    const { $axios } = useContext()
+    const { $axios } = useContext();
 
     const user = ref({
       bio: String,
@@ -65,28 +65,28 @@ export default defineComponent({
       fullName: String,
       joinedAt: String,
       posts: []
-    })
+    });
 
-    const posts = ref([])
+    const posts = ref([]);
 
     onMounted(async () => {
-      const resp = await $axios.$get('https://zeth-juno.herokuapp.com/user/zeth.leonardo@protonmail.com?includePosts=true')
-      user.value = resp.user
-      posts.value = resp.user.posts
-    })
+      const resp = await $axios.$get('https://zeth-juno.herokuapp.com/user/zeth.leonardo@protonmail.com?includePosts=true');
+      user.value = resp.user;
+      posts.value = resp.user.posts;
+    });
 
     return {
       user,
       posts
-    }
+    };
   },
 
   head () {
     return {
       title: 'Home ✨'
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
