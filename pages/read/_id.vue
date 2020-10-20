@@ -1,7 +1,6 @@
 <template>
   <div id="read" class="post">
     <img :src="post.imageUrl" class="post-img">
-    <b-loading v-model="loading" />
 
     <div
       :class="[
@@ -9,6 +8,7 @@
         post.imageUrl ? 'post-negmt' : ''
       ]"
     >
+      <b-loading v-model="loading" :is-full-page="false" />
       <div v-show="!loading" class="card-content">
         <div class="title oswald">
           {{ post.title }}
