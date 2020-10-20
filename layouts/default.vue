@@ -9,9 +9,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api';
 
-import Navbar from '~/components/Navbar.vue'
+import Navbar from '~/components/Navbar.vue';
 
 export default defineComponent({
   components: {
@@ -24,13 +24,13 @@ export default defineComponent({
         icon: 'home',
         to: { name: 'index' }
       }
-    ]
+    ];
 
     return {
       items
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="scss">
@@ -43,7 +43,7 @@ export default defineComponent({
     font-family: 'Oswald', sans-serif;
   }
 
-  font-family: 'Lato', sans-serif;
+  font-family: 'Oxygen', sans-serif;
 
   .float {
     &__left {

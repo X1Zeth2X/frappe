@@ -5,8 +5,9 @@
         <div class="card form has-text-left">
           <div class="card-header">
             <p class="card-header-title">
-              Login
+              Zeth's Blog
             </p>
+
             <a
               class="card-header-icon"
               @click="$router.go(-1)"
@@ -39,9 +40,11 @@
             </b-notification>
 
             <b-button
-              type="is-info login-btn"
+              type="is-primary login-btn"
+              size="is-medium"
               expanded
-              @click="authenticate"
+              icon-right="login"
+              @click="validate"
             >
               Login
             </b-button>
@@ -53,7 +56,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, useContext } from '@nuxtjs/composition-api'
+import { defineComponent, reactive, ref, useContext } from '@nuxtjs/composition-api';
 
 export default defineComponent({
   name: 'login',
@@ -62,58 +65,69 @@ export default defineComponent({
   auth: 'guest',
 
   setup () {
+    const { $auth } = useContext();
+
     const state = reactive({
       email: '',
       password: ''
-    })
+    });
 
-    const { $auth } = useContext()
+    const errorMsg = ref('');
 
-    const errorMsg = ref('')
+    const validate = () => {
+      if (!state.email || !state.password) {
+        errorMsg.value = 'Please enter an email or password.';
+        return;
+      }
 
-    function authenticate () {
+      // Authenticate if form is fine.
+      authenticate();
+    };
+
+    const authenticate = () => {
       const data = {
         email: state.email,
         password: state.password
-      }
+      };
 
       $auth.loginWith('local', { data })
         .then((res: any) => {
-          $auth.setUser(res.data.user)
+          $auth.setUser(res.data.user);
         }).catch((err) => {
-          errorMsg.value = err.response.data.message
-        })
-    }
+          errorMsg.value = err.response.data.message;
+        });
+    };
 
     return {
       state,
       errorMsg,
-      authenticate
-    }
+      validate
+    };
   },
 
   head () {
     return {
       title: 'Login'
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
 #login {
-  .form {
-    max-width: 32em;
-    margin: 0 auto;
-    border-bottom-right-radius: 2em;
-  }
+  background-image: url('https://source.unsplash.com/arwTpnIUHdM/1920x1080');
+  background-repeat: no-repeat;
+  background-size: cover;
 
-  .card-header {
-    box-shadow: 0px;
+  .form {
+    max-width: 35em;
+    margin: 0 auto;
+    border-radius: .3em 2em 2em 2em;
   }
 
   .login-btn {
     border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;
   }
 }
 </style>

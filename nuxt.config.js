@@ -11,7 +11,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Teko:wght@600&Lato&family=Oswald:wght@500&display=swap'
+        href: 'https://fonts.googleapis.com/css2?family=Teko:wght@600&Lato&family=Oswald:wght@500&family=Oxygen:wght@400;700&display=swap'
       },
       {
         rel: 'stylesheet',
@@ -67,4 +67,4 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {}
-}
+};

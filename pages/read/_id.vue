@@ -1,17 +1,17 @@
 <template>
   <div id="read" class="post">
-    <img :src="post.imageUrl" class="post-img">
-    <b-loading v-model="loading" />
+    <img :src="post.imageUrl" class="post__img">
 
     <div
-      :class="[
-        'card', 'post-content', 'animate__animated animate__bounceIn',
-        post.imageUrl ? 'post-negmt' : ''
-      ]"
+      class="card post__content animate__animated animate__bounceIn"
     >
+      <b-loading v-model="loading" :is-full-page="false" />
+
       <div v-show="!loading" class="card-content">
-        <div class="title oswald">
-          {{ post.title }}
+        <div>
+          <span class="is-size-2 title oswald">
+            {{ post.title }}
+          </span>
 
           <b-dropdown v-if="$auth.loggedIn" aria-role="list" class="float__right">
             <b-button slot="trigger" slot-scope="{ active }" class="is-primary">
@@ -32,12 +32,13 @@
         </div>
 
         <div class="subtitle">
-          {{ post.author.fullName }} &middot; {{ prettyDate(post.createdAt) }}
+          {{ post.author.fullName }}
+          &middot; {{ prettyDate(post.createdAt) }}
         </div>
 
         <div>
           <markdown-it-vue-light
-            class="md-body"
+            class="md-body post__text"
             :content="content"
           />
         </div>
@@ -48,7 +49,7 @@
       class="topBtn"
       icon-right="chevron-up"
       size="is-large"
-      type="is-dark"
+      type="is-info"
       outlined
 
       @click="goTop"
@@ -57,16 +58,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, useContext } from '@nuxtjs/composition-api'
-import moment from 'moment'
+import { defineComponent, onMounted, ref, useContext } from '@nuxtjs/composition-api';
+import moment from 'moment';
 
 export default defineComponent({
   name: 'read',
 
   setup (_, { root }) {
-    const [route, router] = [root.$route, root.$router]
-    const { $axios } = useContext()
-    const loading = ref(true)
+    const [route, router] = [root.$route, root.$router];
+    const { $axios } = useContext();
+    const loading = ref(true);
 
     const post = ref({
       id: Number,
@@ -75,28 +76,28 @@ export default defineComponent({
       content: String,
       createdAt: String,
       updatedAt: String
-    })
+    });
 
-    const content = ref('')
+    const content = ref('');
 
     onMounted(async () => {
-      const resp = await $axios.$get(`https://zeth-juno.herokuapp.com/post/${route.params.id}`)
-      post.value = resp.post
-      content.value = resp.post.content
+      const resp = await $axios.$get(`https://zeth-juno.herokuapp.com/post/${route.params.id}`);
+      post.value = resp.post;
+      content.value = resp.post.content;
 
       setTimeout(() => {
-        loading.value = false
-      }, 250)
-    })
+        loading.value = false;
+      }, 250);
+    });
 
     const deletePost = () => {
-      $axios.$delete(`https://zeth-juno.herokuapp.com/post/${route.params.id}`)
-      router.replace({ name: 'index' })
-    }
+      $axios.$delete(`https://zeth-juno.herokuapp.com/post/${route.params.id}`);
+      router.replace({ name: 'index' });
+    };
 
-    const prettyDate = (date: string) => moment.utc(date).format('MMM do, YYYY')
+    const prettyDate = (date: string) => moment(date).utc().format('MMM do, YYYY');
 
-    const goTop = () => window.scrollTo({ top: 0 })
+    const goTop = () => window.scrollTo({ top: 0 });
 
     return {
       post,
@@ -106,47 +107,46 @@ export default defineComponent({
       deletePost,
       prettyDate,
       goTop
-    }
+    };
   },
 
   head () {
     return {
       title: 'Read 📖'
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
 #read {
   .post {
-    &-img {
+    &__img {
       -webkit-clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
       clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
       height: 70vh;
       width: 100%;
       object-fit: cover;
+      position: absolute;
+      top: 0px;
     }
 
-    &-content {
-      border-radius: 1em;
-      max-width: 75em;
-      width: 95%;
-      min-height: 12em;
-      margin: 0 auto;
+    &__content {
+      border-radius: 2em;
 
-      padding-left: 2em;
-      padding-right: 2em;
-      padding-top: 2em;
-      padding-bottom: 1em;
+      max-width: 85rem;
+      min-height: 12em;
+      margin: 5rem auto;
+      padding: 2em 3em 4em;
     }
 
     &__text {
-      font-size: 16px;
+      font-size: 1.15rem;
+      font-family: 'Oxygen', sans-serif;
     }
 
-    &-negmt {
-      margin-top: -20em;
+    &__negmt {
+      margin-top: -25em;
     }
   }
 

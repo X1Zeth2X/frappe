@@ -57,7 +57,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, useContext } from '@nuxtjs/composition-api'
+import { defineComponent, reactive, useContext } from '@nuxtjs/composition-api';
 
 export default defineComponent({
   name: 'composer',
@@ -65,28 +65,28 @@ export default defineComponent({
   auth: true,
 
   setup (_, { root }) {
-    const { $axios } = useContext()
+    const { $axios } = useContext();
 
     const post = reactive({
       title: '',
       imageUrl: '',
       content: ''
-    })
+    });
 
     const createPost = async () => {
-      const resp = await $axios.$post('https://zeth-juno.herokuapp.com/post/create', post)
+      const resp = await $axios.$post('https://zeth-juno.herokuapp.com/post/create', post);
 
       if (resp) {
-        root.$router.push(`/read/${resp.post.id}`)
+        root.$router.push(`/read/${resp.post.id}`);
       }
-    }
+    };
 
     return {
       post,
       createPost
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

@@ -28,8 +28,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useContext } from '@nuxtjs/composition-api'
-import moment from 'moment'
+import { defineComponent, useContext } from '@nuxtjs/composition-api';
+import moment from 'moment';
 
 export default defineComponent({
   name: 'Post',
@@ -40,22 +40,23 @@ export default defineComponent({
     name: String,
     image: String
   },
+
   setup (props) {
-    const { $auth } = useContext()
-    const prettyDate = moment.utc(props.date).local().fromNow()
+    const { $auth } = useContext();
+    const prettyDate = moment(props.date).utc().local().fromNow();
 
     const isAuthor = () => {
       return $auth.user !== null ? (
         $auth.user.fullName === props.name
-      ) : false
-    }
+      ) : false;
+    };
 
     return {
       prettyDate,
       isAuthor
-    }
+    };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
