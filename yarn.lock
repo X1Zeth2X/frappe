@@ -8185,10 +8185,10 @@ markdown-it-toc-and-anchor@^4.1.2:
     clone "^2.1.0"
     uslug "^1.0.4"
 
-markdown-it-vue@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/markdown-it-vue/-/markdown-it-vue-1.1.4.tgz#5923c08541292a2b6286b5d949f9a786314bc45d"
-  integrity sha512-jumxxSAzT3xqS3j8otVtP3v2i2cMln9f6rBv9gCipKHEqESKdMtP7Rsh3GlTcDJWfgq7iHHDklODYYN6CNff7Q==
+markdown-it-vue@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/markdown-it-vue/-/markdown-it-vue-1.1.5.tgz#be6854e3cde7a74538a0d6af9515fb2a22f1692d"
+  integrity sha512-uIWSEO8SYb0Dzjy9nsJBQALHw4QyJIg4p+LE4zEpooNQC/uVgDUM3AJhllJYA8jqFKXnBzzWr8wPUEXh12cp8A==
   dependencies:
     echarts "^4.9.0"
     flowchart.js "^1.14.1"
