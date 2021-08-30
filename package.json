@@ -19,7 +19,7 @@
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/composition-api": "^0.12.6",
     "@nuxtjs/pwa": "^3.2.2",
-    "core-js": "^3.6.5",
+    "core-js": "^3.16.4",
     "markdown-it-vue": "^1.1.4",
     "moment": "^2.29.0",
     "nuxt": "^2.14.7",
