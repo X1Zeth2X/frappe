@@ -21,7 +21,7 @@
     "@nuxtjs/pwa": "^3.2.2",
     "core-js": "^3.6.5",
     "markdown-it-vue": "^1.1.4",
-    "moment": "^2.29.0",
+    "moment": "^2.29.3",
     "nuxt": "^2.14.7",
     "nuxt-buefy": "^0.4.3"
   },
