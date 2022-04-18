@@ -23,7 +23,7 @@
     "markdown-it-vue": "^1.1.4",
     "moment": "^2.29.0",
     "nuxt": "^2.14.7",
-    "nuxt-buefy": "^0.4.3"
+    "nuxt-buefy": "^0.4.22"
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",
